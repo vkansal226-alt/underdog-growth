@@ -1,0 +1,24 @@
+{
+  "generated": "2026-06-04T01:46:37",
+  "mode": "propose",
+  "config": {
+    "MIN_IMPRESSIONS": 500,
+    "MIN_AGE_DAYS": 5,
+    "MAX_CUTS_PER_CYCLE": 1,
+    "MAX_NEW_PER_CYCLE": 2,
+    "MIN_CATALOG": 5,
+    "MAX_POSTS_PER_PLATFORM_PER_DAY": 1
+  },
+  "scale": [],
+  "hold": [
+    "professional-napper-tee",
+    "good-boy-club-tee",
+    "snack-goblin-tee",
+    "anti-social-pro-nap-tee",
+    "will-work-for-treats-tee",
+    "my-whole-heart-tee",
+    "adopt-love-repeat-tee"
+  ],
+  "cut": [],
+  "new_design_budget": 2
+}
