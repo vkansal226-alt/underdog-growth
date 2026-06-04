@@ -1,0 +1,100 @@
+{
+  "brand": {
+    "name": "Underdog Goods",
+    "tagline": "Goods for the good dogs — and the people who spoil them.",
+    "checkout_base": "https://underdog-goods.printify.me",
+    "palette": {
+      "ink": "#2E3192",
+      "cream": "#F6EFE0",
+      "clay": "#E07A5F",
+      "mustard": "#E5B25D",
+      "text": "#1B1B2F"
+    }
+  },
+  "products": [
+    {
+      "slug": "professional-napper-tee",
+      "name": "Professional Napper Tee",
+      "price_usd": 19.99,
+      "headline": "A nap schedule, disguised as a t-shirt.",
+      "story": "Plans? You have a dog and a couch and zero regrets. This sleepy little design is for the homebodies, the introverts, and the dogs who turned napping into a full-time career. Cozy on the inside, honest on the outside.",
+      "design": "/designs/professional-napper.png",
+      "mockup": "/product-shots/professional-napper-tee.png",
+      "colors": ["Ash", "Dark Heather", "Light Blue"],
+      "checkout_url": "",
+      "blurb": "Sleepy dog, bold statement. For the dog (and the owner) who treats napping as a career."
+    },
+    {
+      "slug": "good-boy-club-tee",
+      "name": "Good Boy Club Tee",
+      "price_usd": 19.99,
+      "headline": "Card-carrying member of the Good Boy Club.",
+      "story": "Some people have a personality. You have a dog. This distressed retro badge says it for you, warm and loud, before you open your mouth. Soft enough to wear every day, bold enough that strangers ask about it at the dog park.",
+      "design": "",
+      "mockup": "/product-shots/good-boy-club.png",
+      "colors": ["Ash", "Dark Heather", "Light Blue"],
+      "checkout_url": "",
+      "blurb": "Card-carrying member of the Good Boy Club. A distressed vintage badge for people whose whole personality is their dog."
+    },
+    {
+      "slug": "snack-goblin-tee",
+      "name": "Snack Goblin Tee",
+      "price_usd": 19.99,
+      "headline": "Sweet, innocent, and four seconds from your sandwich.",
+      "story": "You know the look: the wide eyes, the slow lean, the absolute certainty that your food is their food. This one is a love letter to the little goblin who has never once been full. Print it big, wear it proud.",
+      "design": "/product-shots/snack-goblin.png",
+      "mockup": "/product-shots/snack-goblin-tee.png",
+      "colors": ["Ash", "Dark Heather", "Light Blue"],
+      "checkout_url": "",
+      "blurb": "Adorable. Innocent. Four seconds from inhaling your sandwich. For the little gremlin you'd do anything for."
+    },
+    {
+      "slug": "anti-social-pro-nap-tee",
+      "name": "Anti-Social, Pro-Nap Tee",
+      "price_usd": 19.99,
+      "headline": "Less a slogan, more a lifestyle.",
+      "story": "You and the dog and the couch, that is the whole plan. This sleepy design is for the people who cancel plans to stay in, and the dogs who fully support the decision. Wear your priorities where everyone can read them.",
+      "design": "",
+      "mockup": "/product-shots/anti-social-pro-nap.png",
+      "colors": ["Ash", "Dark Heather", "Light Blue"],
+      "checkout_url": "",
+      "blurb": "Less a slogan, more a lifestyle. For the dog and human who consider the couch a full-time commitment."
+    },
+    {
+      "slug": "will-work-for-treats-tee",
+      "name": "Will Work For Treats Tee",
+      "price_usd": 19.99,
+      "headline": "Hireable. Loyal. Motivated entirely by snacks.",
+      "story": "Sit. Stay. Negotiate. Your dog has exactly one currency and it lives in the treat jar. This cheerful little mascot is for the very good, very food-motivated employee of the month. Every month, forever.",
+      "design": "/designs/will-work-for-treats.png",
+      "mockup": "/product-shots/will-work-for-treats-tee.png",
+      "colors": ["Ash", "Dark Heather", "Light Blue"],
+      "checkout_url": "",
+      "blurb": "Hireable, loyal, and motivated entirely by snacks. For the very good (and very food-motivated) employee of the month."
+    },
+    {
+      "slug": "my-whole-heart-tee",
+      "name": "My Whole Heart Tee",
+      "price_usd": 19.99,
+      "headline": "Some dogs fetch the ball. Yours fetched your whole heart.",
+      "story": "There is the dog, and then there is THE dog: the one who gets the couch, the bed, and the last bite. This soft, sweet design is for the unashamedly sappy, the ones who tear up at adoption videos. No notes, just love.",
+      "design": "/product-shots/my-whole-heart.png",
+      "mockup": "/product-shots/my-whole-heart-tee.png",
+      "colors": ["Ash", "Dark Heather", "Light Blue"],
+      "checkout_url": "",
+      "blurb": "Some dogs fetch the ball. Yours fetched your entire heart. A soft, sweet one for the unashamedly sappy."
+    },
+    {
+      "slug": "adopt-love-repeat-tee",
+      "name": "Adopt · Love · Repeat Tee",
+      "price_usd": 19.99,
+      "headline": "The only three-step program that actually sticks.",
+      "story": "Adopt. Love. Repeat. It is a worldview, really. This warm vintage badge is for rescue people and the scruffy, perfect mutts who rescued them right back. Wear it to the shelter, the vet, and the group chat where everyone trades dog photos.",
+      "design": "/product-shots/adopt-love-repeat.png",
+      "mockup": "/product-shots/adopt-love-repeat-tee.png",
+      "colors": ["Ash", "Dark Heather", "Light Blue"],
+      "checkout_url": "",
+      "blurb": "The only three-step program that actually works. A warm retro badge for rescue people and the mutts who rescued them right back."
+    }
+  ]
+}
