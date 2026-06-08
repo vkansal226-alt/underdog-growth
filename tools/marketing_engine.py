@@ -177,8 +177,22 @@ def page_url(p):
     return f"{SITE_BASE}/product/{p['slug']}"
 
 
+def _load_themes():
+    """Hardcoded THEMES for the original catalog, overlaid with growth-side themes.json
+    (where the autonomous brief author writes social copy for new designs)."""
+    merged = dict(THEMES)
+    path = os.environ.get("UNDERDOG_THEMES", os.path.join(
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "growth", "state", "themes.json"))
+    if os.path.exists(path):
+        try:
+            merged.update(json.load(open(path)))
+        except Exception:
+            pass
+    return merged
+
+
 def theme(p):
-    return THEMES.get(p["slug"], {})
+    return _load_themes().get(p["slug"], {})
 
 
 def tiktok_caption(p):

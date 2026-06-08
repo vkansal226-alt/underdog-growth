@@ -114,40 +114,127 @@ def plan():
     return out
 
 
+SITE = os.environ.get("SITE_BASE", "https://underdog-goods.vercel.app").rstrip("/")
+WEB = os.environ.get("UNDERDOG_WEB", "")
+THEMES_PATH = os.environ.get("UNDERDOG_THEMES", os.path.join(STATE, "themes.json"))
+
+
+def _slot(counter):
+    """21:00 UTC, staggered one per call starting tomorrow — honors 1 post/platform/day."""
+    d = datetime.datetime.now(datetime.timezone.utc).date() + datetime.timedelta(days=1 + counter)
+    return datetime.datetime.combine(d, datetime.time(hour=21)).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def _load_products(web):
+    pth = os.path.join(web, "data", "products.json")
+    d = json.load(open(pth))
+    return (d if isinstance(d, list) else d.get("products", [])), pth
+
+
+def _slug_exists(web, slug):
+    items, _ = _load_products(web)
+    return any(p.get("slug") == slug for p in items)
+
+
+def _add_product(web, brief, render):
+    items, pth = _load_products(web)
+    items.append({
+        "slug": brief["slug"], "name": brief["name"],
+        "price_usd": brief.get("price_usd", 19.99),
+        "headline": brief.get("headline", ""), "story": brief.get("story", ""),
+        "design": render["design"], "mockup": render["mockup"],
+        "colors": brief.get("colors", []), "checkout_url": "",
+        "blurb": brief.get("blurb", ""),
+    })
+    json.dump(items, open(pth, "w"), indent=2)
+
+
+def _add_theme(brief):
+    os.makedirs(os.path.dirname(THEMES_PATH), exist_ok=True)
+    data = json.load(open(THEMES_PATH)) if os.path.exists(THEMES_PATH) else {}
+    data[brief["slug"]] = brief.get("social", {})
+    json.dump(data, open(THEMES_PATH, "w"), indent=2)
+
+
+def _schedule(slug, counter, dry):
+    sh([sys.executable, ENGINE, "--product", slug, "--platforms", "tiktok,pinterest",
+        "--mode", "schedule", "--at", _slot(counter)], dry)
+
+
+def _auto_new_designs(p, slot, dry):
+    """auto mode: author briefs -> render -> critic gate -> publish survivors to walnut."""
+    from growth import brief_author, critic, design_pipeline, deploy
+    if not WEB:
+        print("  AUTO: UNDERDOG_WEB unset (no storefront checkout) — skipping new designs.")
+        return slot
+    budget = p["new_design_budget"]
+    if dry:
+        print(f"  AUTO (dry): would author up to {budget} brief(s), render+critic, publish survivors.")
+        return slot
+    briefs = brief_author.author(budget)
+    print(f"  AUTO: authored {len(briefs)} brief(s).")
+    accepted = []
+    for b in briefs:
+        slug = b.get("slug")
+        try:
+            if not slug or _slug_exists(WEB, slug):
+                print(f"    skip {slug}: already exists or invalid")
+                continue
+            r = design_pipeline.render(slug, b["recraft_prompt"], WEB)
+            v = critic.review(r["mockup_path"])
+            print(f"    critic {slug}: score={v['score']} pass={v['pass']} — {v.get('reasons','')[:90]}")
+            if not v["pass"]:
+                for f in (r["mockup_path"], os.path.join(WEB, "public", r["design"].lstrip("/"))):
+                    try:
+                        os.remove(f)
+                    except OSError:
+                        pass
+                continue
+            _add_theme(b)                       # social copy (incl carousel hook) before frames
+            _add_product(WEB, b, r)
+            sh([sys.executable, CAROUSEL, "--product", slug], dry)
+            accepted.append(slug)
+        except Exception as e:                  # isolate failures — never block siblings
+            print(f"    brief {slug} failed: {e}")
+    if not accepted:
+        print("  AUTO: no new designs passed the critic this cycle.")
+        return slot
+    if deploy.push_walnut(WEB, f"design-bot: {len(accepted)} new design(s) [{', '.join(accepted)}]"):
+        for slug in accepted:
+            if deploy.wait_for_url(f"{SITE}/social/{slug}/01-hook.png", timeout=300):
+                _schedule(slug, slot, dry)
+                slot += 1
+            else:
+                print(f"    {slug}: frames not live on Vercel yet; will post next cycle")
+    return slot
+
+
 def execute(dry):
     if not os.path.exists(PLAN):
         plan()
     p = json.load(open(PLAN))
     post_mode = "draft" if MODE == "propose" else "schedule"
     print(f"\nEXECUTE  mode={MODE}  -> marketing as '{post_mode}'  (dry_run={dry})")
+    slot = 0  # global stagger counter: enforces 1 post/platform/day across this cycle
 
     # 1) refresh marketing for SCALE designs (known winners) — safe in every mode.
-    # Frames already exist + are hosted, so refresh = a fresh post (no PIL/deploy needed);
-    # this keeps the cycle runnable in a cloud env with no image toolchain.
     for slug in p["scale"]:
-        cmd = [sys.executable, ENGINE, "--product", slug, "--platforms", "tiktok,pinterest", "--mode", post_mode]
         if post_mode == "schedule":
-            when = (datetime.datetime.now() + datetime.timedelta(days=1)).replace(microsecond=0).isoformat()
-            cmd += ["--at", when]
-        sh(cmd, dry)
+            _schedule(slug, slot, dry)
+            slot += 1
+        else:
+            sh([sys.executable, ENGINE, "--product", slug, "--platforms", "tiktok,pinterest", "--mode", "draft"], dry)
 
-    # 2) NEW designs — agent-authored briefs, only in auto, capped (surfaced, not silently run)
-    briefs = json.load(open(BRIEFS)) if os.path.exists(BRIEFS) else []
-    if briefs:
-        print(f"  NEW briefs found ({len(briefs)}); budget={p['new_design_budget']}.")
-        for b in briefs[: p["new_design_budget"]]:
-            print(f"    brief: {b}")
-            print("      -> run the Recraft pipeline (generate_design_batch -> prep -> composite),")
-            print("         add to products.json, then build_carousels + engine. (guarded: needs --confirm)")
+    # 2) NEW designs — auto mode authors + vets + publishes; assist/propose only surface.
+    if MODE == "auto":
+        slot = _auto_new_designs(p, slot, dry)
     else:
-        print("  NEW: no briefs.json yet — agent supplies briefs from the perf report.")
+        n = len(json.load(open(BRIEFS))) if os.path.exists(BRIEFS) else 0
+        print(f"  NEW: {n} brief(s) queued; switch GROWTH_MODE=auto to author + publish new designs.")
 
     # 3) CUTS — destructive; surfaced for confirmation, never auto-deleted here
     if p["cut"]:
-        print(f"  CUT proposed: {p['cut']}  -> remove from products.json + archive Printify listing (needs --confirm).")
-
-    if MODE != "propose" and post_mode == "schedule":
-        print("  reminder: full-auto posting needs hosted frames — set VERCEL_DEPLOY_HOOK (see PLAYBOOK).")
+        print(f"  CUT proposed: {p['cut']}  -> remove from products.json + archive listing (needs --confirm).")
 
 
 def main():

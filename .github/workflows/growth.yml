@@ -2,9 +2,12 @@ name: growth-loop
 
 # Runs the Underdog Goods growth loop on GitHub's runners (open internet egress,
 # so Zernio + Supabase are reachable — unlike Anthropic's sandboxed cloud env).
-# ASSIST mode: measures, then auto-SCHEDULES fresh marketing for proven winners
-# (designs with demand signal). New-design generation and cuts stay surfaced-only
-# (need --confirm) — only the publish-winning-designs step runs unattended.
+# Modes (GROWTH_MODE env below):
+#   assist - measure + auto-schedule marketing for proven winners (current).
+#   auto   - additionally author brand-new designs (Claude), render (Recraft),
+#            vet with a vision critic, and publish survivors to the storefront.
+#            Requires the ANTHROPIC/RECRAFT secrets + WALNUT_DEPLOY_KEY (write
+#            access to the walnut storefront repo). Cuts always stay surfaced-only.
 
 on:
   schedule:
@@ -27,10 +30,18 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Run growth cycle (assist mode)
+      - name: Install image toolchain (auto mode)
+        run: |
+          python -m pip install --quiet Pillow
+          sudo apt-get update -qq && sudo apt-get install -y -qq fonts-liberation
+
+      - name: Run growth cycle
         env:
           ZERNIO_API_KEY: ${{ secrets.ZERNIO_API_KEY }}
-          GROWTH_MODE: assist
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          RECRAFT_API_KEY: ${{ secrets.RECRAFT_API_KEY }}
+          WALNUT_DEPLOY_KEY: ${{ secrets.WALNUT_DEPLOY_KEY }}
+          GROWTH_MODE: assist   # flip to "auto" after WALNUT_DEPLOY_KEY is set + one watched cycle passes
         run: |
           if [ -z "$ZERNIO_API_KEY" ]; then
             echo "::error::ZERNIO_API_KEY secret is not set on the repo"; exit 1
