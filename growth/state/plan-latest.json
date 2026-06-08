@@ -1,11 +1,11 @@
 {
-  "generated": "2026-06-08T14:54:23",
-  "mode": "assist",
+  "generated": "2026-06-08T19:31:20",
+  "mode": "auto",
   "config": {
     "MIN_IMPRESSIONS": 500,
     "MIN_AGE_DAYS": 5,
     "MAX_CUTS_PER_CYCLE": 1,
-    "MAX_NEW_PER_CYCLE": 2,
+    "MAX_NEW_PER_CYCLE": 1,
     "MIN_CATALOG": 5,
     "MAX_POSTS_PER_PLATFORM_PER_DAY": 1
   },
@@ -20,5 +20,5 @@
     "adopt-love-repeat-tee"
   ],
   "cut": [],
-  "new_design_budget": 2
+  "new_design_budget": 1
 }
