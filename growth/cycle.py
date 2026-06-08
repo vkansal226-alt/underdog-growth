@@ -125,6 +125,33 @@ def _slot(counter):
     return datetime.datetime.combine(d, datetime.time(hour=21)).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
+def _schedule_base():
+    """Day offset so new posts land AFTER anything already scheduled in Zernio —
+    avoids stacking a fresh design on top of the existing queue."""
+    key = os.environ.get("ZERNIO_API_KEY")
+    if not key:
+        return 0
+    try:
+        import urllib.request
+        req = urllib.request.Request("https://zernio.com/api/v1/posts?limit=50")
+        req.add_header("Authorization", f"Bearer {key}")
+        with urllib.request.urlopen(req, timeout=30) as r:
+            d = json.loads(r.read().decode())
+        posts = d.get("posts", d if isinstance(d, list) else d.get("data", []))
+        today = datetime.datetime.now(datetime.timezone.utc).date()
+        latest = today
+        for p in posts:
+            if p.get("status") == "scheduled" and p.get("scheduledFor"):
+                try:
+                    dt = datetime.datetime.fromisoformat(p["scheduledFor"].replace("Z", "+00:00")).date()
+                    latest = max(latest, dt)
+                except Exception:
+                    pass
+        return max(0, (latest - today).days)  # _slot adds tomorrow, so first lands at latest+1
+    except Exception:
+        return 0
+
+
 def _load_products(web):
     pth = os.path.join(web, "data", "products.json")
     d = json.load(open(pth))
@@ -215,7 +242,8 @@ def execute(dry):
     p = json.load(open(PLAN))
     post_mode = "draft" if MODE == "propose" else "schedule"
     print(f"\nEXECUTE  mode={MODE}  -> marketing as '{post_mode}'  (dry_run={dry})")
-    slot = 0  # global stagger counter: enforces 1 post/platform/day across this cycle
+    # global stagger counter: 1 post/platform/day, starting after the existing queue
+    slot = _schedule_base() if post_mode == "schedule" else 0
 
     # 1) refresh marketing for SCALE designs (known winners) — safe in every mode.
     for slug in p["scale"]:
