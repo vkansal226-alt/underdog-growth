@@ -41,7 +41,8 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           RECRAFT_API_KEY: ${{ secrets.RECRAFT_API_KEY }}
           WALNUT_DEPLOY_KEY: ${{ secrets.WALNUT_DEPLOY_KEY }}
-          GROWTH_MODE: assist   # flip to "auto" after WALNUT_DEPLOY_KEY is set + one watched cycle passes
+          GROWTH_MODE: auto
+          MAX_NEW_PER_CYCLE: "1"   # gentle first ramp; bump to 2 once you've seen a cycle land
         run: |
           if [ -z "$ZERNIO_API_KEY" ]; then
             echo "::error::ZERNIO_API_KEY secret is not set on the repo"; exit 1
