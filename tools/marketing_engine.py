@@ -195,6 +195,22 @@ def tiktok_caption(p):
     return body[:2200]
 
 
+# TikTok PHOTO (slideshow) posts use the caption as the slideshow *title*, which
+# TikTok caps at 90 chars — so a photo carousel can't carry the long video-style
+# caption above. Lead with the hook (the CTA + storefront link live in the bio and
+# on the final carousel frame); add a couple broad tags only if they fit.
+TIKTOK_PHOTO_TITLE_MAX = 90
+
+
+def tiktok_photo_title(p):
+    t = theme(p)
+    title = (t.get("tt_hook") or p.get("headline") or p["name"]).strip()
+    for tag in ("#dogsoftiktok", "#fyp"):
+        if len(title) + 1 + len(tag) <= TIKTOK_PHOTO_TITLE_MAX:
+            title += " " + tag
+    return title[:TIKTOK_PHOTO_TITLE_MAX]
+
+
 def pinterest_pin(p):
     t = theme(p)
     title = (t.get("pin_title") or f"{p['name']} | Funny Dog Lover T-Shirt")[:100]
@@ -236,7 +252,8 @@ def build_payload(platform, product, mode, scheduled_for):
         # TikTok is carousel/video-first: a single static photo barely reaches.
         # Post a branded multi-image photo carousel (hook -> tee -> design -> cta).
         media = [{"type": "image", "url": u} for u in carousel_frames(product)]
-        content = tiktok_caption(product)
+        # photo slideshow: caption == title (TikTok caps it at 90 chars)
+        content = tiktok_photo_title(product)
         psd = {"privacy_level": "PUBLIC_TO_EVERYONE", "content_preview_confirmed": True}
     elif platform == "pinterest":
         # Pinterest pins are 1 image by design (no carousels) — a single strong pin.

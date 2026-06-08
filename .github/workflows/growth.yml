@@ -2,7 +2,9 @@ name: growth-loop
 
 # Runs the Underdog Goods growth loop on GitHub's runners (open internet egress,
 # so Zernio + Supabase are reachable — unlike Anthropic's sandboxed cloud env).
-# PROPOSE mode: measures + drafts fresh marketing for winners; nothing publishes.
+# ASSIST mode: measures, then auto-SCHEDULES fresh marketing for proven winners
+# (designs with demand signal). New-design generation and cuts stay surfaced-only
+# (need --confirm) — only the publish-winning-designs step runs unattended.
 
 on:
   schedule:
@@ -25,10 +27,10 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Run growth cycle (propose mode)
+      - name: Run growth cycle (assist mode)
         env:
           ZERNIO_API_KEY: ${{ secrets.ZERNIO_API_KEY }}
-          GROWTH_MODE: propose
+          GROWTH_MODE: assist
         run: |
           if [ -z "$ZERNIO_API_KEY" ]; then
             echo "::error::ZERNIO_API_KEY secret is not set on the repo"; exit 1
