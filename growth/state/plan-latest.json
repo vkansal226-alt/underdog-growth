@@ -1,6 +1,6 @@
 {
-  "generated": "2026-06-07T14:56:25",
-  "mode": "propose",
+  "generated": "2026-06-08T14:54:23",
+  "mode": "assist",
   "config": {
     "MIN_IMPRESSIONS": 500,
     "MIN_AGE_DAYS": 5,
