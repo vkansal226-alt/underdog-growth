@@ -1,1 +1,30 @@
-[]
+[
+  {
+    "slug": "couch-potato-tee",
+    "name": "Couch Potato Tee",
+    "price_usd": 19.99,
+    "headline": "A dog's honest job description.",
+    "blurb": "For the proud homebodies who know their dog's superpower is professional napping.",
+    "story": "Your dog doesn't need a job title. Their work is comfort, consistency, and being your best reason to stay in. We celebrate the couch advocates, the blanket philosophers, the ones who've mastered the art of doing absolutely nothing with style. This tee is for dog people who get it.",
+    "colors": [
+      "Ash",
+      "Dark Heather",
+      "Warm Oat"
+    ],
+    "recraft_prompt": "Flat vector illustration of a chubby, content dog lounging sideways on a couch, one paw draped over the armrest, eyes half-closed in bliss. Simple couch outline, warm earth tones, retro 70s style linework, bold and friendly. Text reads 'COUCH POTATO' in chunky sans-serif above or below. Centered, isolated on a plain white background, print-ready apparel graphic.",
+    "social": {
+      "tt_hook": "Tell me your dog's job without telling me \ud83d\udecb\ufe0f",
+      "tt_tags": [
+        "#dogsoftiktok",
+        "#dogmom",
+        "#couchlife",
+        "#doghumor",
+        "#rescuedog",
+        "#homebody"
+      ],
+      "pin_title": "Couch Potato Dog Tee | Funny Dog Lover T-Shirt",
+      "pin_keywords": "dog mom shirt, funny dog tee, dog lover apparel, couch life humor, rescue dog gift",
+      "audience": "Homebody dog parents who celebrate the cozy life"
+    }
+  }
+]
