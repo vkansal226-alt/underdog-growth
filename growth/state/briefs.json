@@ -1,29 +1,29 @@
 [
   {
-    "slug": "couch-potato-tee",
-    "name": "Couch Potato Tee",
+    "slug": "dog-tired-tee",
+    "name": "Dog Tired Tee",
     "price_usd": 19.99,
-    "headline": "A dog person's honest self-portrait",
-    "blurb": "For the homebody who's found their perfect companion on the couch and has zero plans to leave.",
-    "story": "We get it. Your dog is the best listener, the warmest blanket buddy, and the only accountability partner you need. This design celebrates the beautiful introvert life where staying in with your pup is not a compromise, it's the dream. Couch time is quality time.",
+    "headline": "Because you're exhausted and your dog won't let you sleep.",
+    "blurb": "A relatable design for dog parents who love their chaotic pups despite running on fumes and cold coffee.",
+    "story": "We made this for the 3 a.m. bathroom break crew and the Sunday morning zoomies survivors. Your dog gives you purpose, joy, and absolutely zero rest. Wear it like the badge of honor it is.",
     "colors": [
       "Ash",
-      "Heather Tan",
-      "Dark Heather"
+      "Dark Heather",
+      "Black"
     ],
-    "recraft_prompt": "A chunky retro vector illustration of a person and their dog lounging together on a couch, both looking blissfully content, wearing cozy socks, surrounded by snacks and a remote control. Flat bold shapes in warm earthy tones. Text reads 'COUCH POTATO' in blocky sans-serif lettering above or below the scene. Centered, isolated on a plain white background, print-ready apparel graphic.",
+    "recraft_prompt": "A worn-out cartoon dog slumped in a comfortable armchair wearing pajamas, one paw holding a steaming coffee mug, eyes half-closed with dark circles, surrounded by small floating Z's and scattered dog toys. Bold retro vector style with warm muted tones. Text reads 'DOG TIRED' in friendly rounded sans-serif lettering above the dog. Centered, isolated on a plain white background, print-ready apparel graphic.",
     "social": {
-      "tt_hook": "if you spend more time on the couch than anywhere else, this is your tee \ud83d\udecb\ufe0f",
+      "tt_hook": "if your dog owns your sleep schedule, this tee gets it \ud83d\ude34",
       "tt_tags": [
         "#dogmom",
-        "#introvert",
-        "#couchlife",
         "#dogsoftiktok",
-        "#homebody"
+        "#sleepdeprived",
+        "#doglife",
+        "#puppyproblems"
       ],
-      "pin_title": "Couch Potato Dog Lover T-Shirt - Funny Dog Mom Tee",
-      "pin_keywords": "dog mom shirt, funny dog tee, couch potato, dog lover apparel, introvert dog shirt",
-      "audience": "introverts and homebodies who choose their dog over plans"
+      "pin_title": "Dog Tired Funny Dog Mom Tee | Exhausted Dog Lover Shirt",
+      "pin_keywords": "dog mom shirt, dog lover tee, funny dog apparel, rescue dog humor, dog dad gift",
+      "audience": "Sleep-deprived dog parents who laugh at their own exhaustion"
     }
   }
 ]
