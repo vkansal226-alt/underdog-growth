@@ -21,25 +21,25 @@ export VERCEL_ORG_ID="${VERCEL_ORG_ID:-team_1lPmpCT4OnSRD3Ktm1xR61JQ}"
 export VERCEL_PROJECT_ID="${VERCEL_PROJECT_ID:-prj_jbLA2sJUokZRVDRKsJOtZUQdPN7s}"
 
 if [ "$GROWTH_MODE" = "auto" ]; then
-  # auto mode needs: the vault checked out (write deploy key) so the new design's
-  # files persist, AND a VERCEL_TOKEN so `vercel deploy --prod` can push it live.
-  # The storefront is the projects/underdog-goods-web subdir of the walnut vault.
+  # auto mode needs: the storefront repo checked out (write deploy key) so new
+  # designs persist + redeploy, AND a VERCEL_TOKEN so `vercel deploy --prod` works.
+  # The storefront lives in its own repo (underdog-goods-web), not the vault.
   if [ -z "$VERCEL_TOKEN" ]; then
     echo "::warning::VERCEL_TOKEN not set — new designs can't deploy; auto new-design step will be skipped"
-  elif [ -n "$WALNUT_DEPLOY_KEY" ]; then
-    mkdir -p ~/.ssh && printf '%s\n' "$WALNUT_DEPLOY_KEY" > ~/.ssh/walnut && chmod 600 ~/.ssh/walnut
-    export GIT_SSH_COMMAND="ssh -i ~/.ssh/walnut -o StrictHostKeyChecking=no"
-    rm -rf /tmp/walnut
-    if git clone -q --depth 1 git@github.com:vkansal226-alt/walnut.git /tmp/walnut; then
-      export UNDERDOG_VAULT=/tmp/walnut
-      export UNDERDOG_WEB=/tmp/walnut/projects/underdog-goods-web
+  elif [ -n "$STOREFRONT_DEPLOY_KEY" ]; then
+    mkdir -p ~/.ssh && printf '%s\n' "$STOREFRONT_DEPLOY_KEY" > ~/.ssh/store && chmod 600 ~/.ssh/store
+    export GIT_SSH_COMMAND="ssh -i ~/.ssh/store -o StrictHostKeyChecking=no"
+    rm -rf /tmp/store
+    if git clone -q git@github.com:vkansal226-alt/underdog-goods-web.git /tmp/store; then
+      export UNDERDOG_VAULT=/tmp/store          # persist new designs back to the storefront repo
+      export UNDERDOG_WEB=/tmp/store            # the storefront is the repo root now
       export UNDERDOG_PRODUCTS=$UNDERDOG_WEB/data/products.json
       export UNDERDOG_MANIFEST=$UNDERDOG_WEB/public/social/manifest.json
     else
-      echo "::warning::walnut clone failed — auto new-design step will be skipped"
+      echo "::warning::storefront clone failed — auto new-design step will be skipped"
     fi
   else
-    echo "::warning::WALNUT_DEPLOY_KEY not set — auto new-design step will be skipped"
+    echo "::warning::STOREFRONT_DEPLOY_KEY not set — auto new-design step will be skipped"
   fi
 fi
 
