@@ -16,17 +16,25 @@ export GROWTH_MODE="${GROWTH_MODE:-propose}"
 
 [ -f growth/PAUSE ] && { echo PAUSED; exit 0; }
 
+# Vercel project identity (storefront deploys via the Vercel CLI, not git auto-deploy).
+export VERCEL_ORG_ID="${VERCEL_ORG_ID:-team_1lPmpCT4OnSRD3Ktm1xR61JQ}"
+export VERCEL_PROJECT_ID="${VERCEL_PROJECT_ID:-prj_jbLA2sJUokZRVDRKsJOtZUQdPN7s}"
+
 if [ "$GROWTH_MODE" = "auto" ]; then
-  # auto mode needs the storefront checked out (write deploy key) so new designs
-  # commit + deploy there. Fall back to measure-only if the key is missing.
-  if [ -n "$WALNUT_DEPLOY_KEY" ]; then
+  # auto mode needs: the vault checked out (write deploy key) so the new design's
+  # files persist, AND a VERCEL_TOKEN so `vercel deploy --prod` can push it live.
+  # The storefront is the projects/underdog-goods-web subdir of the walnut vault.
+  if [ -z "$VERCEL_TOKEN" ]; then
+    echo "::warning::VERCEL_TOKEN not set — new designs can't deploy; auto new-design step will be skipped"
+  elif [ -n "$WALNUT_DEPLOY_KEY" ]; then
     mkdir -p ~/.ssh && printf '%s\n' "$WALNUT_DEPLOY_KEY" > ~/.ssh/walnut && chmod 600 ~/.ssh/walnut
     export GIT_SSH_COMMAND="ssh -i ~/.ssh/walnut -o StrictHostKeyChecking=no"
     rm -rf /tmp/walnut
-    if git clone -q git@github.com:vkansal226-alt/walnut.git /tmp/walnut; then
-      export UNDERDOG_WEB=/tmp/walnut
-      export UNDERDOG_PRODUCTS=/tmp/walnut/data/products.json
-      export UNDERDOG_MANIFEST=/tmp/walnut/public/social/manifest.json
+    if git clone -q --depth 1 git@github.com:vkansal226-alt/walnut.git /tmp/walnut; then
+      export UNDERDOG_VAULT=/tmp/walnut
+      export UNDERDOG_WEB=/tmp/walnut/projects/underdog-goods-web
+      export UNDERDOG_PRODUCTS=$UNDERDOG_WEB/data/products.json
+      export UNDERDOG_MANIFEST=$UNDERDOG_WEB/public/social/manifest.json
     else
       echo "::warning::walnut clone failed — auto new-design step will be skipped"
     fi
