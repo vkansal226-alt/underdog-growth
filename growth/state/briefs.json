@@ -1,29 +1,29 @@
 [
   {
-    "slug": "dog-tired-tee",
-    "name": "Dog Tired Tee",
+    "slug": "dog-broke-my-heart-tee",
+    "name": "Dog Broke My Heart Tee",
     "price_usd": 19.99,
-    "headline": "Because you're exhausted and your dog won't let you sleep.",
-    "blurb": "A relatable design for dog parents who love their chaotic pups despite running on fumes and cold coffee.",
-    "story": "We made this for the 3 a.m. bathroom break crew and the Sunday morning zoomies survivors. Your dog gives you purpose, joy, and absolutely zero rest. Wear it like the badge of honor it is.",
+    "headline": "Because my dog owns me now.",
+    "blurb": "For the dog parent who didn't expect to fall this hard and wouldn't change a thing.",
+    "story": "We came in as the owners. We left as the owned. This design celebrates that beautiful surrender where your dog stops being a pet and becomes the reason you check your phone for photos during work. It's funny because it's painfully true.",
     "colors": [
-      "Ash",
-      "Dark Heather",
-      "Black"
+      "Heather Red",
+      "Black",
+      "Cream"
     ],
-    "recraft_prompt": "A worn-out cartoon dog slumped in a comfortable armchair wearing pajamas, one paw holding a steaming coffee mug, eyes half-closed with dark circles, surrounded by small floating Z's and scattered dog toys. Bold retro vector style with warm muted tones. Text reads 'DOG TIRED' in friendly rounded sans-serif lettering above the dog. Centered, isolated on a plain white background, print-ready apparel graphic.",
+    "recraft_prompt": "A broken heart split in half, with a cute, happy dog face emerging from the center filling the crack with warmth and light. Bold retro flat vector style, 1970s color palette, centered, isolated on a plain white background, print-ready apparel graphic",
     "social": {
-      "tt_hook": "if your dog owns your sleep schedule, this tee gets it \ud83d\ude34",
+      "tt_hook": "if your dog broke your heart ask me how \ud83d\udc15",
       "tt_tags": [
         "#dogmom",
         "#dogsoftiktok",
-        "#sleepdeprived",
-        "#doglife",
-        "#puppyproblems"
+        "#dogparent",
+        "#rescuedog",
+        "#doglife"
       ],
-      "pin_title": "Dog Tired Funny Dog Mom Tee | Exhausted Dog Lover Shirt",
-      "pin_keywords": "dog mom shirt, dog lover tee, funny dog apparel, rescue dog humor, dog dad gift",
-      "audience": "Sleep-deprived dog parents who laugh at their own exhaustion"
+      "pin_title": "Dog Broke My Heart Funny Dog Mom Tee Design",
+      "pin_keywords": "dog mom shirt, funny dog tee, dog parent gift, dog lover apparel",
+      "audience": "dog parents who love harder than expected"
     }
   }
 ]

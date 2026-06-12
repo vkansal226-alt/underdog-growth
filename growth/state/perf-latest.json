@@ -1,7 +1,7 @@
 {
-  "generated": "2026-06-08T19:31:20",
+  "generated": "2026-06-12T00:40:39",
   "totals": {
-    "designs": 7,
+    "designs": 8,
     "impressions": 0,
     "signups": 0,
     "live_posts_measured": 0
@@ -69,6 +69,16 @@
     },
     "adopt-love-repeat-tee": {
       "name": "Adopt \u00b7 Love \u00b7 Repeat Tee",
+      "platforms": {},
+      "impressions": 0,
+      "engagement": 0,
+      "clicks": 0,
+      "signups": 0,
+      "posts": 0,
+      "score": 0.0
+    },
+    "dog-parent-resume-tee": {
+      "name": "Dog Parent Resume Tee",
       "platforms": {},
       "impressions": 0,
       "engagement": 0,
