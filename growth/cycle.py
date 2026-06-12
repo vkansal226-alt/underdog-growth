@@ -164,16 +164,21 @@ def _slug_exists(web, slug):
 
 
 def _add_product(web, brief, render):
-    items, pth = _load_products(web)
-    items.append({
+    pth = os.path.join(web, "data", "products.json")
+    data = json.load(open(pth))                 # preserve the {brand, products} wrapper
+    entry = {
         "slug": brief["slug"], "name": brief["name"],
         "price_usd": brief.get("price_usd", 19.99),
         "headline": brief.get("headline", ""), "story": brief.get("story", ""),
         "design": render["design"], "mockup": render["mockup"],
         "colors": brief.get("colors", []), "checkout_url": "",
         "blurb": brief.get("blurb", ""),
-    })
-    json.dump(items, open(pth, "w"), indent=2)
+    }
+    if isinstance(data, list):
+        data.append(entry)
+    else:
+        data.setdefault("products", []).append(entry)
+    json.dump(data, open(pth, "w"), indent=2)
 
 
 def _add_theme(brief):
@@ -226,13 +231,24 @@ def _auto_new_designs(p, slot, dry):
     if not accepted:
         print("  AUTO: no new designs passed the critic this cycle.")
         return slot
-    if deploy.push_walnut(WEB, f"design-bot: {len(accepted)} new design(s) [{', '.join(accepted)}]"):
-        for slug in accepted:
-            if deploy.wait_for_url(f"{SITE}/social/{slug}/01-hook.png", timeout=300):
-                _schedule(slug, slot, dry)
-                slot += 1
-            else:
-                print(f"    {slug}: frames not live on Vercel yet; will post next cycle")
+    ok, _ = deploy.deploy_vercel(WEB)
+    if not ok:
+        print("  AUTO: vercel deploy failed — designs built locally; will post next cycle.")
+        return slot
+    vault = os.environ.get("UNDERDOG_VAULT", "")
+    rel = os.path.relpath(WEB, vault) if vault else WEB
+    for slug in accepted:
+        if deploy.wait_for_url(f"{SITE}/social/{slug}/01-hook.png", timeout=300):
+            _schedule(slug, slot, dry)
+            slot += 1
+            deploy.persist_to_vault(vault, [
+                os.path.join(rel, "data", "products.json"),
+                os.path.join(rel, "public", "product-shots", f"{slug}.png"),
+                os.path.join(rel, "public", "product-shots", f"{slug}-tee.png"),
+                os.path.join(rel, "public", "social", slug),
+            ], f"design-bot: new design {slug}")
+        else:
+            print(f"    {slug}: frame not live on Vercel yet; will post next cycle")
     return slot
 
 
