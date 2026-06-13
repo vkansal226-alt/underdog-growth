@@ -1,29 +1,29 @@
 [
   {
-    "slug": "dog-broke-my-heart-tee",
-    "name": "Dog Broke My Heart Tee",
+    "slug": "dog-hair-dont-care-tee",
+    "name": "Dog Hair Don't Care Tee",
     "price_usd": 19.99,
-    "headline": "Because my dog owns me now.",
-    "blurb": "For the dog parent who didn't expect to fall this hard and wouldn't change a thing.",
-    "story": "We came in as the owners. We left as the owned. This design celebrates that beautiful surrender where your dog stops being a pet and becomes the reason you check your phone for photos during work. It's funny because it's painfully true.",
+    "headline": "Because lint rollers are just decoration at this point.",
+    "blurb": "A love letter to every dog parent who's accepted that shedding is now their personality trait.",
+    "story": "We started Underdog Goods because dog lovers deserve merch that gets the joke. This design celebrates the beautiful chaos of living with a shedding best friend. If your wardrobe doubles as a fur collection, this tee is your people.",
     "colors": [
-      "Heather Red",
-      "Black",
+      "Heather Gray",
+      "Dark Navy",
       "Cream"
     ],
-    "recraft_prompt": "A broken heart split in half, with a cute, happy dog face emerging from the center filling the crack with warmth and light. Bold retro flat vector style, 1970s color palette, centered, isolated on a plain white background, print-ready apparel graphic",
+    "recraft_prompt": "Retro flat vector illustration of a stylized dog shedding a cloud of fur around them, with playful typography reading 'DOG HAIR DON'T CARE' in bold block letters below. The dog should have a confident, unbothered expression. Warm, mid-century modern color palette. Bold outlines, solid fills, no gradients. Centered, isolated on a plain white background, print-ready apparel graphic.",
     "social": {
-      "tt_hook": "if your dog broke your heart ask me how \ud83d\udc15",
+      "tt_hook": "if your lint roller has a lint roller... this tee is for you \ud83d\udc15",
       "tt_tags": [
-        "#dogmom",
         "#dogsoftiktok",
-        "#dogparent",
+        "#dogmom",
+        "#dogshed",
         "#rescuedog",
         "#doglife"
       ],
-      "pin_title": "Dog Broke My Heart Funny Dog Mom Tee Design",
-      "pin_keywords": "dog mom shirt, funny dog tee, dog parent gift, dog lover apparel",
-      "audience": "dog parents who love harder than expected"
+      "pin_title": "Dog Hair Don't Care Tee | Funny Dog Lover Apparel",
+      "pin_keywords": "dog mom shirt, funny dog tee, dog lover gift, shedding dog, dog parent",
+      "audience": "dog parents drowning in fur"
     }
   }
 ]

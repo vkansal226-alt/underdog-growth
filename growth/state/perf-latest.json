@@ -1,7 +1,7 @@
 {
-  "generated": "2026-06-12T00:40:39",
+  "generated": "2026-06-13T15:04:54",
   "totals": {
-    "designs": 8,
+    "designs": 9,
     "impressions": 0,
     "signups": 0,
     "live_posts_measured": 0
@@ -79,6 +79,16 @@
     },
     "dog-parent-resume-tee": {
       "name": "Dog Parent Resume Tee",
+      "platforms": {},
+      "impressions": 0,
+      "engagement": 0,
+      "clicks": 0,
+      "signups": 0,
+      "posts": 0,
+      "score": 0.0
+    },
+    "dog-broke-my-heart-tee": {
+      "name": "Dog Broke My Heart Tee",
       "platforms": {},
       "impressions": 0,
       "engagement": 0,
