@@ -150,7 +150,7 @@ def main():
     # join Zernio per-post analytics -> design via ledger (id match), else skip
     for platform in PLATFORMS:
         for row in zernio_posts(platform):
-            pid = row.get("_id") or row.get("postId") or row.get("id")
+            pid = row.get("latePostId") or row.get("postId") or row.get("_id") or row.get("id")  # Zernio analytics rows key the original post as latePostId; _id is the analytics record
             slug = (ledger.get(pid) or {}).get("slug") if pid else None
             if slug not in agg:
                 continue
