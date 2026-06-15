@@ -1,29 +1,29 @@
 [
   {
-    "slug": "dog-hair-dont-care-tee",
-    "name": "Dog Hair Don't Care Tee",
+    "slug": "dog-tax-tee",
+    "name": "Dog Tax Tee",
     "price_usd": 19.99,
-    "headline": "Because lint rollers are just decoration at this point.",
-    "blurb": "A love letter to every dog parent who's accepted that shedding is now their personality trait.",
-    "story": "We started Underdog Goods because dog lovers deserve merch that gets the joke. This design celebrates the beautiful chaos of living with a shedding best friend. If your wardrobe doubles as a fur collection, this tee is your people.",
+    "headline": "Paying my daily dog tax, one cuddle at a time",
+    "blurb": "For the dog parent who knows their pup is basically a furry dependent on the emotional balance sheet.",
+    "story": "We call it the dog tax: that non-negotiable levy of love, attention, and snacks your dog demands the moment you walk through the door. It's the best tax you'll ever pay. This tee celebrates the glorious financial and emotional bankruptcy that comes with being owned by a dog.",
     "colors": [
-      "Heather Gray",
-      "Dark Navy",
-      "Cream"
+      "Ash",
+      "Dark Heather",
+      "Forest Green"
     ],
-    "recraft_prompt": "Retro flat vector illustration of a stylized dog shedding a cloud of fur around them, with playful typography reading 'DOG HAIR DON'T CARE' in bold block letters below. The dog should have a confident, unbothered expression. Warm, mid-century modern color palette. Bold outlines, solid fills, no gradients. Centered, isolated on a plain white background, print-ready apparel graphic.",
+    "recraft_prompt": "Bold retro flat vector illustration of a cartoon golden retriever or mixed breed dog wearing tiny round glasses and holding a clipboard with a checklist, sitting at a small desk. Include stacks of imaginary 'dog currency' or treats nearby. Simple, playful, chunky line work in a 1970s style. Centered, isolated on a plain white background, print-ready apparel graphic",
     "social": {
-      "tt_hook": "if your lint roller has a lint roller... this tee is for you \ud83d\udc15",
+      "tt_hook": "my dog's financial advisor here \ud83d\udc15",
       "tt_tags": [
-        "#dogsoftiktok",
         "#dogmom",
-        "#dogshed",
+        "#dogparent",
+        "#dogtax",
         "#rescuedog",
-        "#doglife"
+        "#doglover"
       ],
-      "pin_title": "Dog Hair Don't Care Tee | Funny Dog Lover Apparel",
-      "pin_keywords": "dog mom shirt, funny dog tee, dog lover gift, shedding dog, dog parent",
-      "audience": "dog parents drowning in fur"
+      "pin_title": "Funny Dog Tax Tee for Dog Moms and Dads Who Get It",
+      "pin_keywords": "dog mom tee, dog parent shirt, funny dog gift, dog lover apparel, dog tax humor",
+      "audience": "dog parents who joke about their pup's expensive emotional demands"
     }
   }
 ]
