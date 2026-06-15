@@ -66,7 +66,9 @@ def plan():
         print("PAUSE file present — halting (logging only).")
         sys.exit(0)
     # fresh measurement
-    subprocess.run([sys.executable, os.path.join(HERE, "measure.py")], check=False)
+    r = subprocess.run([sys.executable, os.path.join(HERE, "measure.py")], check=False)
+    if r.returncode != 0:
+        print(f"  ::warning:: measure.py exited {r.returncode} — planning on STALE perf if present")
     if not os.path.exists(PERF):
         sys.exit("no perf report; run measure first")
     perf = json.load(open(PERF))
