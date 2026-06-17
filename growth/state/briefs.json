@@ -1,29 +1,29 @@
 [
   {
-    "slug": "dog-tax-tee",
-    "name": "Dog Tax Tee",
+    "slug": "dog-parent-tax-return-tee",
+    "name": "Dog Parent Tax Return Tee",
     "price_usd": 19.99,
-    "headline": "Paying my daily dog tax, one cuddle at a time",
-    "blurb": "For the dog parent who knows their pup is basically a furry dependent on the emotional balance sheet.",
-    "story": "We call it the dog tax: that non-negotiable levy of love, attention, and snacks your dog demands the moment you walk through the door. It's the best tax you'll ever pay. This tee celebrates the glorious financial and emotional bankruptcy that comes with being owned by a dog.",
+    "headline": "Itemize your furry dependent.",
+    "blurb": "For the dog parent who knows their pup is the best ROI they'll ever make.",
+    "story": "Your dog didn't ask to be this expensive, but here we are. Vet bills, fancy kibble, that toy they destroyed in six minutes, the couch that will never be the same. This tee celebrates the beautiful chaos of pet parenthood and the fact that every single penny was worth it. Wear it with pride and maybe show it to your accountant.",
     "colors": [
       "Ash",
       "Dark Heather",
-      "Forest Green"
+      "Navy"
     ],
-    "recraft_prompt": "Bold retro flat vector illustration of a cartoon golden retriever or mixed breed dog wearing tiny round glasses and holding a clipboard with a checklist, sitting at a small desk. Include stacks of imaginary 'dog currency' or treats nearby. Simple, playful, chunky line work in a 1970s style. Centered, isolated on a plain white background, print-ready apparel graphic",
+    "recraft_prompt": "Bold retro flat vector illustration of a golden retriever or mixed breed dog sitting at a desk with tiny glasses, holding a pencil, surrounded by scattered receipts, treat bags, and toy bones. Above the dog in chunky 70s-style lettering: 'TAX DEPENDENT.' Simple geometric shapes, limited color palette, no gradients, centered, isolated on a plain white background, print-ready apparel graphic",
     "social": {
-      "tt_hook": "my dog's financial advisor here \ud83d\udc15",
+      "tt_hook": "if your dog isn't your biggest expense, are you even a dog parent \ud83d\udc15",
       "tt_tags": [
-        "#dogmom",
         "#dogparent",
-        "#dogtax",
+        "#dogmom",
         "#rescuedog",
-        "#doglover"
+        "#petparenting",
+        "#dogtok"
       ],
-      "pin_title": "Funny Dog Tax Tee for Dog Moms and Dads Who Get It",
-      "pin_keywords": "dog mom tee, dog parent shirt, funny dog gift, dog lover apparel, dog tax humor",
-      "audience": "dog parents who joke about their pup's expensive emotional demands"
+      "pin_title": "Dog Parent Tax Return Tee - Funny Dog Lover Shirt",
+      "pin_keywords": "dog parent shirt, funny dog tee, dog lover gift, pet parent humor, dog mom joke",
+      "audience": "dog parents who track treat expenses"
     }
   }
 ]
